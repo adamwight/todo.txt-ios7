@@ -95,11 +95,7 @@ static NSString *accessability = @"Task Details";
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	if (![self.appDelegate isManualMode]) {
-		[self.appDelegate syncClientWithCompletion:nil];
-	}
-	
-	self.curInput = [[NSString alloc] init];	
+	self.curInput = [[NSString alloc] init];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
 												 name:UIKeyboardDidShowNotification object:nil];
@@ -315,7 +311,6 @@ static NSString *accessability = @"Task Details";
 	}
 	
 	[self performSelectorOnMainThread:@selector(exitController) withObject:nil waitUntilDone:YES];
-	[self.appDelegate pushToRemoteWithCompletion:nil];
 }
 
 - (IBAction)doneButtonPressed:(id)sender {

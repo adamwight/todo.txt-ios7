@@ -113,10 +113,8 @@ static NSString * const kTODOTasksSyncingRefreshText = @"Syncing with Dropbox no
 - (void)sync:(id)sender {
 	NSLog(@"sync: called");
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:kTODOTasksSyncingRefreshText];
-    [self.appDelegate syncClientWithCompletion:^(BOOL success, NSError *error) {
-        [self.refreshControl endRefreshing];
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:kTODOTasksRefreshText];
-    }];
+    [self.refreshControl endRefreshing];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:kTODOTasksRefreshText];
 }
 
 - (void) reloadData:(NSNotification *) notification {
@@ -231,12 +229,6 @@ static NSString * const kTODOTasksSyncingRefreshText = @"Syncing with Dropbox no
 }
 
 - (void) viewDidAppear:(BOOL)animated {	
-	if (self.needSync) {
-		self.needSync = NO;
-        if (![self.appDelegate isManualMode]) {
-			[self.appDelegate syncClientWithCompletion:nil];
-        }
-	}	
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -379,7 +371,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
 	}
 	
     [self reloadData:nil];
-    [self.appDelegate pushToRemoteWithCompletion:nil];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -481,7 +472,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
         switch (alertView.tag) {
 			case LOGOUT_TAG:
                 [self dismissViewControllerAnimated:NO completion:nil];
-				[self.appDelegate logout];
 				break;
 			case ARCHIVE_TAG:
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -489,7 +479,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
 				[self.appDelegate displayNotification:@"Archiving completed tasks..."];
 				[self.appDelegate.taskBag archive];
 				[self reloadData:nil];
-				[self.appDelegate pushToRemoteWithCompletion:nil];
 				break;
 			default:
 				break;

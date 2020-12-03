@@ -82,7 +82,6 @@
 		5CE4238717A60396009C6D25 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4238617A60396009C6D25 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CE4238B17A603EF009C6D25 /* DDFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4238A17A603EF009C6D25 /* DDFileReader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CE4239017A603FB009C6D25 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4238F17A603FB009C6D25 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5CE423A217A60509009C6D25 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4239617A60509009C6D25 /* LoginScreenViewController.m */; };
 		5CE423A417A60509009C6D25 /* TaskEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4239917A60509009C6D25 /* TaskEditViewController.m */; };
 		5CE423A617A60509009C6D25 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4239C17A60509009C6D25 /* TaskViewController.m */; };
 		5CE423C917A60560009C6D25 /* TaskEditAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CE423BE17A60560009C6D25 /* TaskEditAccessoryView.xib */; };
@@ -116,7 +115,6 @@
 		8831984A13EBC59E00EC5BC3 /* TaskBagFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831984913EBC59E00EC5BC3 /* TaskBagFactory.m */; };
 		8831984D13EBC62D00EC5BC3 /* TaskBagImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831984C13EBC62C00EC5BC3 /* TaskBagImpl.m */; };
 		883E430113EB8395002FEBCC /* LocalFileTaskRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E430013EB8395002FEBCC /* LocalFileTaskRepository.m */; };
-		883FBFC21520307300D9FA3A /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C2851519995C00C3744B /* DropboxSDK.framework */; };
 		8855D17F18064BEF00B40C85 /* RelativeDateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8855D17E18064BEF00B40C85 /* RelativeDateTest.m */; };
 		8858D0BA13EA89C50083FA44 /* Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = 8858D0B713EA89C50083FA44 /* Priority.m */; };
 		8858D0BB13EA89C50083FA44 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8858D0B913EA89C50083FA44 /* Task.m */; };
@@ -129,16 +127,10 @@
 		8876EF5B14AD79EE00F28C3C /* Strings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876EF5A14AD79EE00F28C3C /* Strings.m */; };
 		8876EF6114AD7E8100F28C3C /* Strings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876EF5A14AD79EE00F28C3C /* Strings.m */; };
 		8876EF6214AD7E8D00F28C3C /* StringsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8876EF5F14AD7D3E00F28C3C /* StringsTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8878944014954AE4000AC39C /* DropboxFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878943F14954AE4000AC39C /* DropboxFileDownloader.m */; };
-		887894441495AEC7000AC39C /* DropboxFileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 887894431495AEC7000AC39C /* DropboxFileUploader.m */; };
-		888065951401898E0036DE2A /* RemoteClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 888065941401898E0036DE2A /* RemoteClientManager.m */; };
-		88806599140191A30036DE2A /* DropboxRemoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88806598140191A30036DE2A /* DropboxRemoteClient.m */; };
 		888065AE14019D3C0036DE2A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888065AD14019D3C0036DE2A /* CFNetwork.framework */; };
 		888065B71401A51C0036DE2A /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 888065B61401A51C0036DE2A /* Network.m */; };
 		888065B91401AF7D0036DE2A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888065B81401AF7D0036DE2A /* SystemConfiguration.framework */; };
 		888286AD146E52C5007DBB16 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888286AC146E52C5007DBB16 /* QuartzCore.framework */; };
-		8885EC5814D657F200C3CA10 /* DropboxFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885EC5714D657F200C3CA10 /* DropboxFile.m */; };
-		8885EC5A14D90F4300C3CA10 /* DropboxFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8885EC5714D657F200C3CA10 /* DropboxFile.m */; };
 		88866D3113F794320073944B /* Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 88866D3013F794320073944B /* Sort.m */; };
 		888693DB14AEA4EE002BB234 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 888693DA14AEA4EE002BB234 /* TaskTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		888693DD14AEAE71002BB234 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 8858D0B913EA89C50083FA44 /* Task.m */; };
@@ -149,7 +141,6 @@
 		88A5B6C214ADA8CA00EA6F70 /* TextSplitterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A5B6BE14ADA63100EA6F70 /* TextSplitterTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		88A5B6C314ADA91000EA6F70 /* PriorityTextSplitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 882B3E8A13EF47610085C888 /* PriorityTextSplitter.m */; };
 		88AAFC631419CB960062BBF6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88AAFC621419CB960062BBF6 /* Icon@2x.png */; };
-		88D5C2861519995C00C3744B /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D5C2851519995C00C3744B /* DropboxSDK.framework */; };
 		88DB7C0A14B2C760003A96F9 /* FilterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB7BF114AFC3CE003A96F9 /* FilterFactory.m */; };
 		88DB7C0C14B2C760003A96F9 /* ByContextFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB7BF414B2A9F0003A96F9 /* ByContextFilter.m */; };
 		88DB7C0E14B2C760003A96F9 /* ByPriorityFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB7BF714B2B073003A96F9 /* ByPriorityFilter.m */; };
@@ -173,9 +164,6 @@
 		88E513F814D128D600177F45 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E513F714D128D600177F45 /* libOCMock.a */; };
 		88E513FC14D12A6700177F45 /* DropboxRemoteClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E513FB14D12A6700177F45 /* DropboxRemoteClientTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		88E513FF14D2459300177F45 /* DropboxFileDownloaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E513FE14D2459300177F45 /* DropboxFileDownloaderTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		88E5140014D2495200177F45 /* DropboxRemoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88806598140191A30036DE2A /* DropboxRemoteClient.m */; };
-		88E5140114D2495200177F45 /* DropboxFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878943F14954AE4000AC39C /* DropboxFileDownloader.m */; };
-		88E5140214D2495200177F45 /* DropboxFileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 887894431495AEC7000AC39C /* DropboxFileUploader.m */; };
 		88E5140414D24FC700177F45 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5705D112F8A07E00BB5E8D /* Security.framework */; };
 		88E5140514D24FE400177F45 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888065AD14019D3C0036DE2A /* CFNetwork.framework */; };
 		88E5140614D250C200177F45 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5910DBD014216A2300BB2D68 /* MessageUI.framework */; };
@@ -198,7 +186,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F75B415149912DF00848E27 /* Todo-txt-unit-tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Todo-txt-unit-tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F75B415149912DF00848E27 /* Todo-txt-unit-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Todo-txt-unit-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F75B41D149912DF00848E27 /* Todo-txt-unit-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Todo-txt-unit-tests-Info.plist"; sourceTree = "<group>"; };
 		0F75B41F149912DF00848E27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0F75B421149912DF00848E27 /* TaskUtilTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskUtilTest.h; sourceTree = "<group>"; };
@@ -236,7 +224,6 @@
 		59216D3D13EA318100FF07EE /* RelativeDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeDate.m; sourceTree = "<group>"; };
 		5C402B6217EE981300DB3F84 /* dropbox_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropbox_logo.png; sourceTree = "<group>"; };
 		5C402B6917EE9EB600DB3F84 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
-		5CA3274B17A6198F0089F9A1 /* DropboxApiKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxApiKey.h; sourceTree = "<group>"; };
 		5CBA12C91800953500E55CE6 /* OpaqueBarsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpaqueBarsNavigationController.h; sourceTree = "<group>"; };
 		5CBA12CA1800953500E55CE6 /* OpaqueBarsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpaqueBarsNavigationController.m; sourceTree = "<group>"; };
 		5CC3F46117A60EC70096A989 /* TaskBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskBag.h; sourceTree = "<group>"; };
@@ -293,8 +280,6 @@
 		5CE4238A17A603EF009C6D25 /* DDFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileReader.m; sourceTree = "<group>"; };
 		5CE4238E17A603FB009C6D25 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5CE4238F17A603FB009C6D25 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		5CE4239517A60509009C6D25 /* LoginScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
-		5CE4239617A60509009C6D25 /* LoginScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		5CE4239817A60509009C6D25 /* TaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditViewController.h; sourceTree = "<group>"; };
 		5CE4239917A60509009C6D25 /* TaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditViewController.m; sourceTree = "<group>"; };
 		5CE4239B17A60509009C6D25 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
@@ -374,30 +359,18 @@
 		8876EF5A14AD79EE00F28C3C /* Strings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Strings.m; sourceTree = "<group>"; };
 		8876EF5E14AD7D3E00F28C3C /* StringsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringsTest.h; sourceTree = "<group>"; };
 		8876EF5F14AD7D3E00F28C3C /* StringsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringsTest.m; sourceTree = "<group>"; };
-		8878943E14954AE4000AC39C /* DropboxFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxFileDownloader.h; sourceTree = "<group>"; };
-		8878943F14954AE4000AC39C /* DropboxFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxFileDownloader.m; sourceTree = "<group>"; };
-		887894421495AEC7000AC39C /* DropboxFileUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxFileUploader.h; sourceTree = "<group>"; };
-		887894431495AEC7000AC39C /* DropboxFileUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxFileUploader.m; sourceTree = "<group>"; };
-		888065931401898E0036DE2A /* RemoteClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteClientManager.h; sourceTree = "<group>"; };
-		888065941401898E0036DE2A /* RemoteClientManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteClientManager.m; sourceTree = "<group>"; };
-		88806597140191A30036DE2A /* DropboxRemoteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxRemoteClient.h; sourceTree = "<group>"; };
-		88806598140191A30036DE2A /* DropboxRemoteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxRemoteClient.m; sourceTree = "<group>"; };
 		888065AD14019D3C0036DE2A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		888065B51401A51C0036DE2A /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		888065B61401A51C0036DE2A /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
 		888065B81401AF7D0036DE2A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		888286AC146E52C5007DBB16 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8885EC5614D657F200C3CA10 /* DropboxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxFile.h; sourceTree = "<group>"; };
-		8885EC5714D657F200C3CA10 /* DropboxFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxFile.m; sourceTree = "<group>"; };
 		88866D2F13F794320073944B /* Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sort.h; path = Classes/Sort.h; sourceTree = "<group>"; };
 		88866D3013F794320073944B /* Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sort.m; path = Classes/Sort.m; sourceTree = "<group>"; };
 		888693D914AEA4EE002BB234 /* TaskTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTest.h; sourceTree = "<group>"; };
 		888693DA14AEA4EE002BB234 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
 		88A5B6BD14ADA63100EA6F70 /* TextSplitterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSplitterTest.h; sourceTree = "<group>"; };
 		88A5B6BE14ADA63100EA6F70 /* TextSplitterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSplitterTest.m; sourceTree = "<group>"; };
-		88A91726146643B70075B886 /* DropboxApiKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropboxApiKey.h; path = ../DropboxApiKey.h; sourceTree = "<group>"; };
 		88AAFC621419CB960062BBF6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		88D5C2851519995C00C3744B /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		88DB7BEE14AFC0E2003A96F9 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Filter.h; path = Classes/Filter.h; sourceTree = "<group>"; };
 		88DB7BF014AFC3CD003A96F9 /* FilterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterFactory.h; path = Classes/FilterFactory.h; sourceTree = "<group>"; };
 		88DB7BF114AFC3CE003A96F9 /* FilterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterFactory.m; path = Classes/FilterFactory.m; sourceTree = "<group>"; };
@@ -459,7 +432,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				883FBFC21520307300D9FA3A /* DropboxSDK.framework in Frameworks */,
 				88E5140814D250F300177F45 /* CoreText.framework in Frameworks */,
 				88E5140914D250F300177F45 /* SystemConfiguration.framework in Frameworks */,
 				0F75B418149912DF00848E27 /* UIKit.framework in Frameworks */,
@@ -486,7 +458,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				7D5705D212F8A07E00BB5E8D /* Security.framework in Frameworks */,
-				88D5C2861519995C00C3744B /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Todo.txt.app */,
-				0F75B415149912DF00848E27 /* Todo-txt-unit-tests.octest */,
+				0F75B415149912DF00848E27 /* Todo-txt-unit-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -595,7 +566,6 @@
 				33F8F19217F1E1100065548B /* icon_152.png */,
 				7D57054412F89F1900BB5E8D /* Icon-Small-50.png */,
 				7D57054512F89F1900BB5E8D /* Icon-Small.png */,
-				5CA3274B17A6198F0089F9A1 /* DropboxApiKey.h */,
 				8D1107310486CEB800E47090 /* todo_txt_touch_ios-Info.plist */,
 				F443B15F1784D8960017A09E /* placeholders.plist */,
 			);
@@ -605,7 +575,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88D5C2851519995C00C3744B /* DropboxSDK.framework */,
 				888286AC146E52C5007DBB16 /* QuartzCore.framework */,
 				F45C4F8F145363F300E92C6D /* CoreText.framework */,
 				5910DBD014216A2300BB2D68 /* MessageUI.framework */,
@@ -842,8 +811,6 @@
 			children = (
 				5CE423CF17A60B6A009C6D25 /* FilterViewController.h */,
 				5CE423D017A60B6A009C6D25 /* FilterViewController.m */,
-				5CE4239517A60509009C6D25 /* LoginScreenViewController.h */,
-				5CE4239617A60509009C6D25 /* LoginScreenViewController.m */,
 				5CBA12C91800953500E55CE6 /* OpaqueBarsNavigationController.h */,
 				5CBA12CA1800953500E55CE6 /* OpaqueBarsNavigationController.m */,
 				5CE4239817A60509009C6D25 /* TaskEditViewController.h */,
@@ -903,17 +870,6 @@
 			isa = PBXGroup;
 			children = (
 				881CA8401400834700AEAD20 /* RemoteClient.h */,
-				88A91726146643B70075B886 /* DropboxApiKey.h */,
-				88806597140191A30036DE2A /* DropboxRemoteClient.h */,
-				88806598140191A30036DE2A /* DropboxRemoteClient.m */,
-				8878943E14954AE4000AC39C /* DropboxFileDownloader.h */,
-				8878943F14954AE4000AC39C /* DropboxFileDownloader.m */,
-				887894421495AEC7000AC39C /* DropboxFileUploader.h */,
-				887894431495AEC7000AC39C /* DropboxFileUploader.m */,
-				888065931401898E0036DE2A /* RemoteClientManager.h */,
-				888065941401898E0036DE2A /* RemoteClientManager.m */,
-				8885EC5614D657F200C3CA10 /* DropboxFile.h */,
-				8885EC5714D657F200C3CA10 /* DropboxFile.m */,
 			);
 			name = Remote;
 			sourceTree = "<group>";
@@ -1045,7 +1001,7 @@
 			);
 			name = "Todo-txt-unit-tests";
 			productName = "Todo-txt-unit-tests";
-			productReference = 0F75B415149912DF00848E27 /* Todo-txt-unit-tests.octest */;
+			productReference = 0F75B415149912DF00848E27 /* Todo-txt-unit-tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		1D6058900D05DD3D006BFB54 /* Todo.txt */ = {
@@ -1194,13 +1150,9 @@
 			files = (
 				5C8E05B917AD8A8D00F238E2 /* Reachability.m in Sources */,
 				5C8E05B517AD8A4700F238E2 /* DDFileReader.m in Sources */,
-				8885EC5A14D90F4300C3CA10 /* DropboxFile.m in Sources */,
 				88E5141614D51C4200177F45 /* TaskIo.m in Sources */,
 				88E5141514D51C2200177F45 /* TaskBagImpl.m in Sources */,
 				88E5140A14D251B300177F45 /* Network.m in Sources */,
-				88E5140014D2495200177F45 /* DropboxRemoteClient.m in Sources */,
-				88E5140114D2495200177F45 /* DropboxFileDownloader.m in Sources */,
-				88E5140214D2495200177F45 /* DropboxFileUploader.m in Sources */,
 				88DB7C0A14B2C760003A96F9 /* FilterFactory.m in Sources */,
 				88DB7C0C14B2C760003A96F9 /* ByContextFilter.m in Sources */,
 				88DB7C0E14B2C760003A96F9 /* ByPriorityFilter.m in Sources */,
@@ -1280,15 +1232,10 @@
 				882B3E8E13EF47B80085C888 /* ProjectParser.m in Sources */,
 				88866D3113F794320073944B /* Sort.m in Sources */,
 				8810D81219ECC2DC00F954C3 /* DistancePickerView.m in Sources */,
-				888065951401898E0036DE2A /* RemoteClientManager.m in Sources */,
-				88806599140191A30036DE2A /* DropboxRemoteClient.m in Sources */,
 				888065B71401A51C0036DE2A /* Network.m in Sources */,
 				F4595BE61453DC48000FB9F6 /* NSMutableAttributedString+TodoTxt.m in Sources */,
-				8878944014954AE4000AC39C /* DropboxFileDownloader.m in Sources */,
-				887894441495AEC7000AC39C /* DropboxFileUploader.m in Sources */,
 				0F75B4311499141800848E27 /* TaskUtil.m in Sources */,
 				8876EF5B14AD79EE00F28C3C /* Strings.m in Sources */,
-				8885EC5814D657F200C3CA10 /* DropboxFile.m in Sources */,
 				F443B1651784D94C0017A09E /* PlaceholderGenerator.m in Sources */,
 				5CE4234A17A602A4009C6D25 /* IASKAppSettingsViewController.m in Sources */,
 				5CE4234C17A602A4009C6D25 /* IASKAppSettingsWebViewController.m in Sources */,
@@ -1313,7 +1260,6 @@
 				5CE4238717A60396009C6D25 /* Reachability.m in Sources */,
 				5CE4238B17A603EF009C6D25 /* DDFileReader.m in Sources */,
 				5CE4239017A603FB009C6D25 /* MBProgressHUD.m in Sources */,
-				5CE423A217A60509009C6D25 /* LoginScreenViewController.m in Sources */,
 				5CE423A417A60509009C6D25 /* TaskEditViewController.m in Sources */,
 				5CE423A617A60509009C6D25 /* TaskViewController.m in Sources */,
 				5CE423D317A60B6A009C6D25 /* FilterViewController.m in Sources */,
@@ -1449,7 +1395,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "todo_txt_touch_ios-Info.plist";
-				INFOPLIST_PREFIX_HEADER = DropboxApiKey.h;
+				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1485,7 +1431,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "todo_txt_touch_ios-Info.plist";
-				INFOPLIST_PREFIX_HEADER = DropboxApiKey.h;
+				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1541,7 +1487,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "todo_txt_touch_ios-Info.plist";
-				INFOPLIST_PREFIX_HEADER = DropboxApiKey.h;
+				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1597,7 +1543,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "todo_txt_touch_ios-Info.plist";
-				INFOPLIST_PREFIX_HEADER = DropboxApiKey.h;
+				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (

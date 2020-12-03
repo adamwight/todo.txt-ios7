@@ -48,28 +48,18 @@
 #import "TaskBag.h"
 #import "TaskBagFactory.h"
 #import "AsyncTask.h"
-#import "DropboxFile.h"
 #import "Network.h"
 #import "LocalFileTaskRepository.h"
 #import "Util.h"
 #import "Reachability.h"
 #import "SJNotificationViewController.h"
 
-static NSString * const kLoginScreenSegueIdentifier = @"LoginScreenSegue";
-static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSegueNotAnimated";
-
 @interface TodoTxtAppDelegate ()
 
 @property (nonatomic, weak) TasksViewController *viewController;
-@property (nonatomic, weak) UIViewController *loginController;
 @property (nonatomic, weak) UINavigationController *contentNavController;
-@property (nonatomic, strong) RemoteClientManager *remoteClientManager;
 @property (nonatomic, strong) id<TaskBag> taskBag;
 @property (nonatomic, strong) NSDate *lastSync;
-@property (nonatomic, copy) RemoteOperationCompletionBlock useAfterAlertBlock;
-@property (nonatomic) BOOL wasConnected;
-
-+ (NSError *)noInternetError;
 
 @end
 
@@ -78,64 +68,8 @@ static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSe
 #pragma mark -
 #pragma mark Application lifecycle
 
-+ (BOOL) needToPush {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults boolForKey:@"need_to_push"];
-}
-
-+ (void) setNeedToPush:(BOOL)needToPush {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:needToPush forKey:@"need_to_push"];
-}
-
-+ (NSError *)noInternetError {
-    return [NSError errorWithDomain:kTODOErrorDomain
-                               code:kTODOErrorCodeNoInternet
-                           userInfo:@{ NSLocalizedDescriptionKey : @"No internet connection: Cannot sync with Dropbox right now." }];
-}
-
-- (void)presentLoginControllerAnimated:(BOOL)animated {
-    if (animated) {
-        [self.window.rootViewController performSegueWithIdentifier:kLoginScreenSegueIdentifier sender:self];
-    } else {
-        [self.window.rootViewController performSegueWithIdentifier:kLoginScreenSegueNotAnimatedIdentifier sender:self];
-    }
-}
-
-- (void) presentLoginController {
-    [self presentLoginControllerAnimated:YES];
-}
-
 - (void) presentMainViewController {
     [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-// http://stackoverflow.com/questions/9679163/why-does-clearing-nsuserdefaults-cause-exc-crash-later-when-creating-a-uiwebview
-//
-- (void) clearUserDefaults {
-	NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-	
-	id workaround51Crash = [[NSUserDefaults standardUserDefaults] objectForKey:@"WebKitLocalStorageDatabasePathPreferenceKey"];
-	
-	NSDictionary *emptySettings = (workaround51Crash != nil)
-	? [NSDictionary dictionaryWithObject:workaround51Crash forKey:@"WebKitLocalStorageDatabasePathPreferenceKey"]
-	: [NSDictionary dictionary];
-	
-	[[NSUserDefaults standardUserDefaults] setPersistentDomain:emptySettings forName:appDomain];
-}
-
-- (void)reachabilityChanged {
-	if ([self isManualMode]) return;
-	
-	if ([self.remoteClientManager.currentClient isNetworkAvailable]) {
-		if (!self.wasConnected) {
-			[self displayNotification:@"Connection reestablished: syncing with Dropbox now..."];
-		}
-		[self syncClientWithCompletion:nil];
-		self.wasConnected = YES;
-	} else {
-		self.wasConnected = NO;
-	}
 }
 
 - (void)displayNotification:(NSString *)message {
@@ -163,34 +97,13 @@ static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSe
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.wasConnected = YES;
    
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 								 @"YES", @"date_new_tasks_preference",
-								 @"NO", @"manual_sync_preference", 
-								 @"NO", @"need_to_push",
 								 @"/todo", @"file_location_preference",
 								 @"none", @"badgeCount_preference", nil];
     [defaults registerDefaults:appDefaults];
-	
-    self.remoteClientManager = [[RemoteClientManager alloc] initWithDelegate:self];
-		
-	// Start listening for network status updates.
-	[Network startNotifier];
-    
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-											 selector:@selector(reachabilityChanged) 
-												 name:kReachabilityChangedNotification object:nil];
-    
-    if (![self.remoteClientManager.currentClient isAuthenticated]) {
-        // Show the login view during the next iteration of the run loop.
-        // It is too early to show the view at this point.
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self presentLoginControllerAnimated:YES];
-        }];
-    }
-	
 
     UIViewController *rootViewController = self.window.rootViewController;
     
@@ -246,10 +159,6 @@ static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSe
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-	
-	if (![self isManualMode] && [self.remoteClientManager.currentClient isAuthenticated]) {
-		[self syncClientWithCompletion:nil];
-	}
 }
 
 
@@ -259,279 +168,6 @@ static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSe
      See also applicationDidEnterBackground:.
      */
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    if ([self.remoteClientManager.currentClient handleOpenURL:url]) {
-        if ([self.remoteClientManager.currentClient isAuthenticated]) {
-            NSLog(@"App linked successfully!");
-            // At this point you can start making API calls
-        }
-        return YES;
-    }
-    // Add whatever other url handling code your app requires here
-    return NO;
-}
-
-#pragma mark -
-#pragma mark Remote functions
-
-- (void)syncClientWithCompletion:(RemoteOperationCompletionBlock)completion {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self syncClientForce:NO completion:completion];
-    }];
-}
-
-- (void)syncClientForce:(BOOL)force completion:(RemoteOperationCompletionBlock)completion {
-	if ([self isManualMode]) {
-        self.useAfterAlertBlock = completion;
-		UIActionSheet* dlg = [[UIActionSheet alloc] 
-							  initWithTitle:@"Manual Sync: Do you want to upload or download your todo.txt file?"
-							  delegate:self 
-							  cancelButtonTitle:@"Cancel" 
-							  destructiveButtonTitle:nil 
-							  otherButtonTitles:@"Upload changes", @"Download to device", nil ];
-		dlg.tag = 10;
-		[dlg showInView:self.contentNavController.visibleViewController.view];
-	} else if ([TodoTxtAppDelegate needToPush]) {
-		[self pushToRemoteOverwrite:NO force:force completion:completion];
-	} else {
-		[self pullFromRemoteForce:force completion:completion];
-	}
-}
-
-- (void)pushToRemoteOverwrite:(BOOL)overwrite force:(BOOL)force completion:(RemoteOperationCompletionBlock)completion {
-	[TodoTxtAppDelegate setNeedToPush:YES];
-    
-    // avoid needing nil checks for completion
-    if (completion == nil) {
-        completion = ^(BOOL succes, NSError *err) {};
-    }
-
-	if (!force && [self isManualMode]) {
-        completion(YES, nil);
-		return;
-	}
-	
-	if (![self.remoteClientManager.currentClient isNetworkAvailable]) {
-        NSError *err = [TodoTxtAppDelegate noInternetError];
-        completion(NO, err);
-		return;
-	}
-	
-	// We probably shouldn't be assuming LocalFileTaskRepository here, 
-	// but that is what the Android app does, so why not?
-	NSString *todoPath = [LocalFileTaskRepository todoFilename];
-	NSString *donePath = nil;
-	
-	if ([self.taskBag doneFileModifiedSince:self.lastSync]) {
-		donePath = [LocalFileTaskRepository doneFilename];
-	}
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [self.remoteClientManager.currentClient pushTodoOverwrite:overwrite
-                                                     withTodo:todoPath
-                                                     withDone:donePath
-                                                   completion:
-     ^(NSString *todoFilePath, NSString *doneFilePath, NSError *error) {
-         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-             
-             if (error != nil) {
-                 // conflict
-                 if (error.code == kRCErrorUploadConflict) {
-                     // alert user to the conflict and ask if he wants to force push or pull
-                     NSLog(@"Upload conflict");
-                     [self syncComplete:NO];
-                     
-                     NSString *message = [NSString
-                                          stringWithFormat:@"Oops! There is a newer version of your %@ file in Dropbox. "
-                                          "Do you want to upload your local changes, or download the Dropbox version?",
-                                          [error.userInfo[kRCUploadConflictFileKey] lastPathComponent]
-                                          ];
-                     
-                     UIAlertView *alert =
-                     [[UIAlertView alloc] initWithTitle: @"File Conflict"
-                                                message: message
-                                               delegate: self
-                                      cancelButtonTitle: @"Cancel"
-                                      otherButtonTitles: @"Upload changes", @"Download to device", nil];
-                     [alert show];
-                     
-                     self.useAfterAlertBlock = completion;
-                     return;
-                 }
-                 
-                 // generic upload error
-                 // kRCErrorUploadFailed
-                 NSLog(@"Error uploading todo file: %@", error);
-                 
-                 [self syncComplete:NO];
-                 
-                 // TODO: move alert out of the the app delegate
-                 UIAlertView *alert =
-                 [[UIAlertView alloc] initWithTitle: @"Error"
-                                            message: @"There was an error uploading your todo.txt file."
-                                           delegate: nil
-                                  cancelButtonTitle: @"OK"
-                                  otherButtonTitles: nil];
-                 [alert show];
-                 
-                 
-                 NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : @"There was an error uploading your todo.txt file.",
-                                             NSUnderlyingErrorKey : error };
-                 
-                 NSError *err = [NSError errorWithDomain:kTODOErrorDomain
-                                                    code:kTODOErrorCodeUploadError
-                                                userInfo:userInfo];
-                 completion(NO, err);
-                 return;
-             }
-             
-             [TodoTxtAppDelegate setNeedToPush:NO];
-             
-             // Push is complete. Let's do a pull now in case the remote done.txt changed
-             [self pullFromRemoteForce:YES completion:completion];
-         }];
-     }];
-}
-
-- (void)pushToRemoteWithCompletion:(RemoteOperationCompletionBlock)completion {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self pushToRemoteOverwrite:NO force:NO completion:completion];
-    }];
-}
-
-- (void)pullFromRemoteForce:(BOOL)force completion:(RemoteOperationCompletionBlock)completion {
-    // avoid needing nil checks for completion
-    if (completion == nil) {
-        completion = ^(BOOL succes, NSError *err) {};
-    }
-    
-	if (!force && [self isManualMode]) {
-        completion(YES, nil);
-		return;
-	}
-	
-	[TodoTxtAppDelegate setNeedToPush:NO];
-
-	if (![self.remoteClientManager.currentClient isNetworkAvailable]) {
-        completion(NO, [TodoTxtAppDelegate noInternetError]);
-		return;
-	}
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [self.remoteClientManager.currentClient pullTodoWithCompletion:^(NSString *todoFilePath, NSString *doneFilePath, NSError *error) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-            
-            if (error != nil) {
-                NSLog(@"Error downloading todo.txt file: %@", error);
-                
-                if (error.code == 404) {
-                    // ignore missing file. They may not have created one yet.
-                    [self syncComplete:YES];
-                    completion(YES, nil);
-                    return;
-                }
-                
-                [self syncComplete:NO];
-                
-                // TODO: move alert out of the the app delegate
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                message:@"There was an error downloading your todo.txt file."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                
-                NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : @"There was an error downloading your todo.txt file.",
-                                            NSUnderlyingErrorKey : error };
-                
-                NSError *err = [NSError errorWithDomain:kTODOErrorDomain
-                                                   code:kTODOErrorCodeDownloadError
-                                               userInfo:userInfo];
-                
-                completion(NO, err);
-                return;
-            }
-            
-            if (todoFilePath) {
-                [self.taskBag reloadWithFile:todoFilePath];
-                // Send notification so that whichever screen is active can refresh itself
-                [[NSNotificationCenter defaultCenter] postNotificationName: kTodoChangedNotification object: nil];
-            }
-            
-            if (doneFilePath) {
-                [self.taskBag loadDoneTasksWithFile:doneFilePath];
-            }
-            
-            [self syncComplete:YES];
-            completion(YES, nil);
-        }];
-    }];
-}
-
-- (void)pullFromRemoteWithCompletion:(RemoteOperationCompletionBlock)completion {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self pullFromRemoteForce:NO completion:completion];
-    }];
-}
-
-- (BOOL) isManualMode {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];	
-	return [defaults boolForKey:@"manual_sync_preference"];
-}
-
-- (void) logout {
-	[self.remoteClientManager.currentClient deauthenticate];
-	[self clearUserDefaults];
-	[self presentLoginController];
-}
-
-- (void)syncComplete:(BOOL)success {
-	if (success) {
-		[TodoTxtAppDelegate setNeedToPush:NO];
-		self.lastSync = [NSDate date];
-	}
-}
-
-#pragma mark -
-#pragma mark RemoteClientDelegate methods
-
-- (void)remoteClient:(id<RemoteClient>)client loginControllerDidLogin:(BOOL)success {
-	if (success) {
-		// If we login using the Dropbox app we will sync after re-activation.
-		// But, if we login using the webview, we never leave the app,
-		// so we have to sync now. Unfortunately, this causes a double
-		// sync when the Dropbox app is used, but I don't see an easy way around that.
-        [self syncClientWithCompletion:nil];
-		[self presentMainViewController];
-	}
-}
-
-#pragma mark -
-#pragma mark Alert view delegate methods
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == [alertView firstOtherButtonIndex]) {
-		[self pushToRemoteOverwrite:YES force:YES completion:self.useAfterAlertBlock];
-	} else if (buttonIndex == [alertView firstOtherButtonIndex] + 1){
-		[self pullFromRemoteForce:YES completion:self.useAfterAlertBlock];
-	}
-}
-
-#pragma mark -
-#pragma mark Action sheet delegate methods
-
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.tag == 10) {
-        if (buttonIndex == [actionSheet firstOtherButtonIndex]) {
-            [self pushToRemoteOverwrite:NO force:YES completion:self.useAfterAlertBlock];
-        } else if (buttonIndex == [actionSheet firstOtherButtonIndex] + 1){
-            [self pullFromRemoteForce:YES completion:self.useAfterAlertBlock];
-        }
-	}
 }
 
 #pragma mark -
@@ -544,7 +180,6 @@ static NSString * const kLoginScreenSegueNotAnimatedIdentifier = @"LoginScreenSe
 }
 
 - (void)dealloc {
-    self.loginController = nil;
     self.viewController = nil;
 }
 

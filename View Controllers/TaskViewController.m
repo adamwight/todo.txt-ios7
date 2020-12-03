@@ -295,7 +295,6 @@ static CGFloat const kIpadGroupedTableViewSideInset = 40;
         [taskBag remove:task];
 		[self performSelectorOnMainThread:@selector(exitController) withObject:nil waitUntilDone:YES];
         [self.appDelegate displayNotification:@"Deleted task"];
-        [self.appDelegate pushToRemoteWithCompletion:nil];
     }
 }
 
@@ -305,7 +304,6 @@ static CGFloat const kIpadGroupedTableViewSideInset = 40;
 	[task markIncomplete];
 	[taskBag update:task];
 	
-	[self.appDelegate pushToRemoteWithCompletion:nil];
 	[self performSelectorOnMainThread:@selector(reloadViewData) withObject:nil waitUntilDone:NO];
 }
 
@@ -327,7 +325,6 @@ static CGFloat const kIpadGroupedTableViewSideInset = 40;
 	} else {
 		[self performSelectorOnMainThread:@selector(reloadViewData) withObject:nil waitUntilDone:NO];
 	}
-	[self.appDelegate pushToRemoteWithCompletion:nil];
 }
 
 - (void) prioritizeTask:(Priority*)selectedPriority {
@@ -336,7 +333,6 @@ static CGFloat const kIpadGroupedTableViewSideInset = 40;
 	task.priority = selectedPriority;
 	[taskBag update:task];
 	
-	[self.appDelegate pushToRemoteWithCompletion:nil];
 	[self performSelectorOnMainThread:@selector(reloadViewData) withObject:nil waitUntilDone:NO];
 }
 

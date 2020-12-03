@@ -43,40 +43,21 @@
  */
 #import <UIKit/UIKit.h>
 #import "TaskBag.h"
-#import "RemoteClientManager.h"
 
 #define kTodoChangedNotification @"kTodoChangedNotification"
 
 static NSString * const kTODOErrorDomain = @"com.todotxt.Todo-txt";
-static NSInteger const kTODOErrorCodeNoInternet = 101;
-static NSInteger const kTODOErrorCodeDownloadError = 201;
-static NSInteger const kTODOErrorCodeUploadError = 202;
-
-/**
- Completion block for remote operations. `error` must be ignored if `success` is `YES`.
- */
-typedef void(^RemoteOperationCompletionBlock)(BOOL success, NSError *error);
 
 @class TasksViewController;
 
-@interface TodoTxtAppDelegate : NSObject <UIApplicationDelegate, RemoteClientDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
+@interface TodoTxtAppDelegate : NSObject <UIApplicationDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) id lastClickedButton; //Anchor holder for the Popover in iPad
 
 @property (nonatomic, readonly) id<TaskBag> taskBag;
-@property (nonatomic, readonly) RemoteClientManager *remoteClientManager;
 
 - (void)displayNotification:(NSString *)message;
-- (void)clearUserDefaults;
-- (void)syncClientWithCompletion:(RemoteOperationCompletionBlock)completion;
-- (void)syncClientForce:(BOOL)force completion:(RemoteOperationCompletionBlock)completion;
-- (void)pushToRemoteWithCompletion:(RemoteOperationCompletionBlock)completion;
-- (void)pushToRemoteOverwrite:(BOOL)overwrite force:(BOOL)force completion:(RemoteOperationCompletionBlock)completion;
-- (void)pullFromRemoteForce:(BOOL)force completion:(RemoteOperationCompletionBlock)completion;
-- (void)pullFromRemoteWithCompletion:(RemoteOperationCompletionBlock)completion;
-- (BOOL)isManualMode;
-- (void)logout;
 
 @end
 

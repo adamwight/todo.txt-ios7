@@ -43,8 +43,6 @@
  */
 #import "TaskBagImpl.h"
 #import "TodoTxtAppDelegate.h"
-#import "RemoteClientManager.h"
-#import "RemoteClient.h"
 #import "LocalFileTaskRepository.h"
 #import "TaskIo.h"
 #import "Filter.h"
