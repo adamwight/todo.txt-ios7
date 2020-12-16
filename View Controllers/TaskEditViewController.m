@@ -388,7 +388,7 @@ static NSString *accessability = @"Task Details";
 
 - (void) priorityWasSelected:(NSInteger *)selectedIndex element:(id)element {
 	self.actionSheetPicker = nil;
-	if (selectedIndex >= 0) {
+	if (selectedIndex >= 0 && element != nil) {
 		Priority *selectedPriority = [Priority byName:(PriorityName)selectedIndex];
 		NSString *newText = nil;
 		if (selectedPriority == [Priority NONE]) {
@@ -407,7 +407,7 @@ static NSString *accessability = @"Task Details";
 
 - (void) projectWasSelected:(NSInteger *)selectedIndex element:(id)element {
 	self.actionSheetPicker = nil;
-	if (selectedIndex >= 0) {
+	if (selectedIndex >= 0 && element != nil) {
 		id<TaskBag> taskBag = self.appDelegate.taskBag;
 		NSString *item = [[taskBag projects] objectAtIndex:selectedIndex];
 		
@@ -424,7 +424,7 @@ static NSString *accessability = @"Task Details";
 
 - (void) contextWasSelected:(NSInteger *)selectedIndex element:(id)element {
 	self.actionSheetPicker = nil;
-	if (selectedIndex >= 0) {
+	if (selectedIndex >= 0 && element != nil) {
 		id<TaskBag> taskBag = self.appDelegate.taskBag;
 		NSString *item = [[taskBag contexts] objectAtIndex:selectedIndex];
 		
